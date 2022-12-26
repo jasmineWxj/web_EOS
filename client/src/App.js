@@ -38,7 +38,8 @@ function App() {
     <div className="App">
       <Child></Child>
       <button onClick={change}>1111</button>
-      {/* <img src='https://images.pexels.com/photos/1476976/pexels-photo-14769376.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'></img> */}
+      <div className='aaa'></div>
+      <img src='https://images.pexels.com/photos/1476976/pexels-photo-14769376.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load'></img>
     </div>
   );
 }

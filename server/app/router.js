@@ -9,4 +9,5 @@ module.exports = app => {
   // 创建一个新的路由
   router.get('/monitor/error', controller.monitor.index);
   router.post('/monitor/sourcemap', controller.monitor.upload);
+  router.get('/monitor/img', controller.monitor.img);
 };

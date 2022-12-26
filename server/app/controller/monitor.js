@@ -5,6 +5,7 @@ const StackParser = require('../../utils/stackparser');
 const gitUser = require('../../utils/runshell')
 const sourceMaps = require('../../utils/souceMap')
 const dingPost = require('../../utils/dingdingPost')
+const dingImgPost = require('../../utils/dingdingImg')
 const fs = require('fs');
 const path = require('path');
 const SourceMap = require('source-map');
@@ -19,17 +20,6 @@ class MonitorController extends Controller {
     const { ctx } = this;
     const { info } = ctx.query;
     const json = JSON.parse(Buffer.from(info, 'base64').toString('utf-8'));
-    // console.log('fronterror:', json);
-    // 转换为源码位置
-    // ----
-    // const stackParser = new StackParser(path.join(this.config.baseDir, 'uploads'));
-    // const stackFrame = stackParser.parseStackTrack(json.stack, json.message);
-    // const originStack = await stackParser.getOriginalErrorStack(stackFrame);
-    // console.log(json);
-    // this.ctx.getLogger('frontendLogger').error(json, originStack);
-
-    // ----------
-    // 路径处理
     const sourceMapDir = path.join(this.config.baseDir, 'uploads');
     // 转换传过来的文件名字
     const fullName = path.basename(json.filename);
@@ -73,6 +63,18 @@ class MonitorController extends Controller {
       commitId,
       codeUser,
       codeMessage
+    ) 
+    ctx.body = '';
+  }
+
+  async img(){
+    const { ctx } = this;
+    const { info } = ctx.query;
+    const json = JSON.parse(Buffer.from(info, 'base64').toString('utf-8'));
+    const { src, nodeName } = json
+    dingImgPost(
+      src,
+      nodeName
     ) 
     ctx.body = '';
   }
